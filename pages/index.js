@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
@@ -8,6 +7,7 @@ import Box from '@mui/material/Box';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import supabase from '../utils/supabaseClient'
+import { useEffect } from 'react';
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
