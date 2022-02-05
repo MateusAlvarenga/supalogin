@@ -7,6 +7,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import supabase from '../utils/supabaseClient'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
@@ -16,9 +17,17 @@ export async function getStaticProps() {
     }
   }
 }
+
+async function signInWithGoogle() {
+  const { user, session, error } = await supabase.auth.signIn({
+    provider: 'google',
+  })
+}
+
 export default function Home(props) {
   return (
     <Layout >
+      {/* {env.SUPABASE.SUPABASE_ANONYMOUS_KEY} */}
 
       <section className={utilStyles.flexCenter}>
         <h1 className="text-3xl font-bold underline">
@@ -32,7 +41,7 @@ export default function Home(props) {
             aria-label="vertical contained button group"
             variant="contained">
 
-            <Button size="medium" color="error" key="one">
+            <Button size="medium" color="error" key="one" onClick={() => signInWithGoogle()}>
               <GoogleIcon /> Google
             </Button>
 
