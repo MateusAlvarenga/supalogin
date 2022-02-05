@@ -1,25 +1,33 @@
-import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
+import Layout from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import supabase from '../utils/supabaseClient'
+
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
+
   return {
     props: {
 
     }
   }
 }
+
 export default function Home(props) {
+
+
+  async function signInWithGoogle() {
+    const { user, session, error } = await supabase.auth.signIn({
+      provider: 'google',
+    })
+  }
+
   return (
     <Layout >
-
       <section className={utilStyles.flexCenter}>
         <h1 className="text-3xl font-bold underline">
           Login
@@ -32,7 +40,7 @@ export default function Home(props) {
             aria-label="vertical contained button group"
             variant="contained">
 
-            <Button size="medium" color="error" key="one">
+            <Button size="medium" color="error" key="one" onClick={() => signInWithGoogle()}>
               <GoogleIcon /> Google
             </Button>
 
