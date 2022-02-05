@@ -50,3 +50,13 @@
 .lightText {
   color: #666;
 }
+
+.flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bgBlack {
+  background-color: rgb(0 0 0);
+}
