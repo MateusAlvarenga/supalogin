@@ -5,7 +5,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import supabase from '../utils/supabaseClient'
+
 
 
 export async function getStaticProps() {
